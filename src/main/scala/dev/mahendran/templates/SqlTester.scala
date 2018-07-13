@@ -23,5 +23,4 @@ object SqlTester extends App{
   println("==================" + path)
 //  val path: String = ClassLoader.getSystemResource("sample_cc.csv").getPath
   new SqlTester(sc).process(path)
-  
 }
