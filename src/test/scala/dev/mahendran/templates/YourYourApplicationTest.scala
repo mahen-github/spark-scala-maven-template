@@ -3,7 +3,7 @@ package dev.mahendran.templates
 import com.holdenkarau.spark.testing.SharedSparkContext
 import org.scalatest.FunSuite
 
-class YourApplicationTest extends FunSuite with SharedSparkContext {
+class YourYourApplicationTest extends FunSuite with SharedSparkContext {
 
    override def beforeAll(): Unit = super.beforeAll()
 
@@ -11,5 +11,7 @@ class YourApplicationTest extends FunSuite with SharedSparkContext {
 
    test("blah blah blah"){
 
+      val yourApplicationObject = new YourApplication(sc)
+      yourApplicationObject.doSomething()
    }
 }
