@@ -1,8 +1,11 @@
 package dev.mahendran.templates
 
 import com.holdenkarau.spark.testing.SharedSparkContext
+import org.junit.runner.RunWith
 import org.scalatest.FunSuite
+import org.scalatest.junit.JUnitRunner
 
+@RunWith(classOf[JUnitRunner])
 class YourYourApplicationTest extends FunSuite with SharedSparkContext {
 
    override def beforeAll(): Unit = super.beforeAll()
