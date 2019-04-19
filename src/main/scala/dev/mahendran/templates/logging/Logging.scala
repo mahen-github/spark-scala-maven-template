@@ -1,15 +1,11 @@
 package dev.mahendran.templates.logging
 
 
-import java.util.Objects
-
 import dev.mahendran.templates.logging.Logger.{ERROR_STACK_FIELD_NAME, ERROR_TYPE_FIELD_NAME}
-import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.message.StringMapMessage
 
 import scala.collection.JavaConversions._
 import scala.collection.mutable.ListBuffer
-
 
 /**
   * A properly structured and formatted message for the log that meets the <a
@@ -18,7 +14,6 @@ import scala.collection.mutable.ListBuffer
   */
 trait Logging{
   protected def logger = Logger
-
 }
 
 final class LogEntryBuilder(){
@@ -76,7 +71,7 @@ final class LogEntryBuilder(){
     fields.add(key + "=" + value)
   }
 
-  def build = {
+  def buildString = {
     val mapMessage = log.getData
 
     val sb = new StringBuilder
@@ -94,11 +89,16 @@ final class LogEntryBuilder(){
     sb.toString()
   }
 
+  def build = {
+    if(!fields.isEmpty) log.`with`("fields",fields.mkString(", "))
+    log
+  }
+
 }
-object Logger {
+object Logger{
 
 
-  private final val logger: org.apache.logging.log4j.Logger =  LogManager.getLogger(getClass)
+  private final val logger: org.apache.logging.log4j.Logger = logger
 
 
   val UNKNOWN_SESSION_ID = "missing-session-id"

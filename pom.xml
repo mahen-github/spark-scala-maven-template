@@ -10,7 +10,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<specs2.version>3.6.1</specs2.version>
 		<scala.compat.version>2.11</scala.compat.version>
-		<spark.version>2.2.0</spark.version>
+		<spark.version>2.4.0</spark.version>
 		<kafka-version>0-10</kafka-version>
 	</properties>
 	<dependencies>
@@ -48,12 +48,22 @@
 <!--			<artifactId>logback-classic</artifactId>-->
 <!--			<version>1.1.2</version>-->
 <!--		</dependency>-->
+    <!-- https://mvnrepository.com/artifact/com.holdenkarau/spark-testing-base -->
+    <dependency>
+      <groupId>com.holdenkarau</groupId>
+      <artifactId>spark-testing-base_${scala.compat.version}</artifactId>
+      <version>${spark.version}_0.11.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-test-tags -->
 		<dependency>
-			<groupId>com.holdenkarau</groupId>
-			<artifactId>spark-testing-base_2.11</artifactId>
-			<version>${spark.version}_0.9.0</version>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-test-tags_2.11</artifactId>
+			<version>1.6.3</version>
 			<scope>test</scope>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/net.alchim31.maven/scala-maven-plugin -->
 		<dependency>
 			<groupId>net.alchim31.maven</groupId>
@@ -64,12 +74,12 @@
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<version>2.11.2</version>
+			<version>2.11.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>2.11.2</version>
+			<version>2.11.1</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -93,8 +103,8 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
-						<source>1.11</source>
-						<target>1.11</target>
+						<source>1.8</source>
+						<target>1.8</target>
 					</configuration>
 				</plugin>
 			</plugins>
@@ -146,52 +156,22 @@
 					</execution>
 				</executions>
 			</plugin>
-
-						<plugin>
-				<groupId>net.alchim31.maven</groupId>
-				<artifactId>scala-maven-plugin</artifactId>
-				<version>3.2.1</version>
-				<configuration>
-					<args>
-						<arg>-unchecked</arg>
-						<arg>-deprecation</arg>
-					</args>
-					<addJavacArgs>-deprecation</addJavacArgs>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-				<executions>
-					<execution>
-						<id>scala-compile-first</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>add-source</goal>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>scala-test-compile</id>
-						<phase>process-test-resources</phase>
-						<goals>
-							<goal>testCompile</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>net.alchim31.maven</groupId>
-				<artifactId>scala-maven-plugin</artifactId>
-				<version>4.0.1</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<goal>testCompile</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>net.alchim31.maven</groupId>-->
+<!--				<artifactId>scala-maven-plugin</artifactId>-->
+<!--				<version>4.0.1</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<goals>-->
+<!--							<goal>compile</goal>-->
+<!--							<goal>testCompile</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--				<configuration>-->
+<!--					<scalaVersion>${scala.compat.version}</scalaVersion>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 
 			<plugin>
 				<groupId>org.scalatest</groupId>
